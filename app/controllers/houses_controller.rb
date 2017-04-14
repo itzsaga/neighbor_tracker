@@ -17,4 +17,18 @@ class HousesController < ApplicationController
     end
   end
 
+  post '/houses' do
+    if is_logged_in?(session)
+      house = House.new(address: params[:address], user_id: session[:id])
+      if house.save
+        binding.pry
+        redirect 'houses'
+      else
+        redirect 'houses/new'
+      end
+    else
+      erb :'error'
+    end
+  end
+
 end
