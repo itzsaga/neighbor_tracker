@@ -17,8 +17,8 @@ house_list.each do |house|
 end
 
 parent_list = [
-  ["Nick k Shoults", 1],
-  ["fanny s. shoults", 1],
+  ["Nick K Shoults", 1],
+  ["Fanny S. Shoults", 1],
   ["Julia Talmage", 2]
 ]
 
@@ -28,7 +28,7 @@ end
 
 child_list = [
   ["Bill", 7],
-  ["jill", 14],
+  ["Jill", 14],
   ["Dorothy", 5],
   ["Leandra", 14],
   ["Edward", 0]
