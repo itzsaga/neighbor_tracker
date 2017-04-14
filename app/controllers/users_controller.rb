@@ -8,4 +8,12 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/signup' do
+    if is_logged_in?(session)
+      "You're logged in"
+    else
+      erb :'users/create_user'
+    end
+  end
+
 end
