@@ -9,4 +9,12 @@ class HousesController < ApplicationController
     end
   end
 
+  get '/houses/new' do
+    if is_logged_in?(session)
+      erb :'houses/new'
+    else
+      erb :'error'
+    end
+  end
+
 end
