@@ -1,0 +1,11 @@
+<% if @houses != [] && !!@house %>
+  <h1>You've Added The Following Households:
+  <small>Click for more info</small></h1>
+  <% @houses.each do |house| %>
+  <div class="list-group">
+    <a href="/houses/<%= house.id %>" class="list-group-item"><%= house.address %></a>
+    </div>
+  <% end %>
+  <% else %>
+  <h1>You haven't added any households yet.</h1>
+<% end %>
