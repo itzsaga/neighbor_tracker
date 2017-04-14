@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(params)
     if @user.save
       session[:id] = @user.id
-      redirect 'tweets'
+      redirect 'houses'
     else
       redirect 'signup'
     end
