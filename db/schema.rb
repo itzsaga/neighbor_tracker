@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415032221) do
+ActiveRecord::Schema.define(version: 20170415034143) do
 
   create_table "children", force: :cascade do |t|
     t.string  "name"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20170415032221) do
   end
 
   create_table "parent_children", force: :cascade do |t|
-    t.integer "parents_id"
-    t.integer "children_id"
+    t.integer "parent_id"
+    t.integer "child_id"
   end
 
   create_table "parents", force: :cascade do |t|
