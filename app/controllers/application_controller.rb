@@ -26,4 +26,13 @@ class ApplicationController < Sinatra::Base
     erb :error
   end
 
+  get '/logout' do
+    if is_logged_in?(session)
+      session.clear
+      redirect 'login'
+    else
+      redirect '/'
+    end
+  end
+
 end
