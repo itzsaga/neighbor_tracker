@@ -21,7 +21,6 @@ class HousesController < ApplicationController
     if is_logged_in?(session)
       house = House.new(address: params[:address], user_id: session[:id])
       if house.save
-        binding.pry
         redirect 'houses'
       else
         redirect 'houses/new'
@@ -36,7 +35,7 @@ class HousesController < ApplicationController
     if is_logged_in?(session) && session[:id] == @house.user_id
       @parents = @house.parents
       @children = @house.children
-      erb 'houses/show'
+      erb :'houses/show'
     else
       erb :'error'
     end

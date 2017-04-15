@@ -1,0 +1,18 @@
+<h1>This is the household at:<h1>
+<address>
+  <%= @house.address %>
+</address>
+<% if @house.parents != [] && !!@house.parents %>
+  <% @house.parents.each do |parent| %>
+    <ul><%= parent.name %> lives here.</ul>
+  <% end %>
+  <% else %>
+    <h3>No Parents found for this household.</h3>
+<% end %>
+<% if @house.children != [] && !!@house.children %>
+  <% @house.children.each do |child| %>
+    <ul><%= child.name %> is <%= child.age %> years old and lives here.</ul>
+  <% end %>
+  <% else %>
+    <h3>No Children found for this household.</h3>
+<% end %>
