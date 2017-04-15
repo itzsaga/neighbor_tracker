@@ -31,4 +31,15 @@ class HousesController < ApplicationController
     end
   end
 
+  get '/houses/:id' do
+    @house = House.find(params[:id])
+    if is_logged_in?(session) && session[:id] == @house.user_id
+      @parents = @house.parents
+      @children = @house.children
+      erb 'houses/show'
+    else
+      erb :'error'
+    end
+  end
+
 end
