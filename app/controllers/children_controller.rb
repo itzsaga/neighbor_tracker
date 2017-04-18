@@ -19,4 +19,18 @@ class ChildrenController < ApplicationController
       erb :'error'
     end
   end
+
+  post '/children' do
+    if is_logged_in?(session)
+      binding.pry
+      child = Child.new(params)
+      if child.save
+        redirect 'children'
+      else
+        redirect 'child/new'
+      end
+    else
+      erb :'error'
+    end
+  end
 end

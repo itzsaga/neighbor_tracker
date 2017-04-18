@@ -16,7 +16,7 @@
   <div class="checkbox">
     <% @parents.each do |parent| %>
       <label class="checkbox-inline">
-        <input type="checkbox" name="parent_ids[]" id="<%= parent.id %>"><%= parent.name %></input>
+        <input type="checkbox" name="parent_ids[]" value="<%= parent.id %>"><%= parent.name %></input>
       <label class="checkbox-inline">
     <% end %>
   </div>
