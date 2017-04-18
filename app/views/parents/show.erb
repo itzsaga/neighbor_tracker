@@ -8,9 +8,11 @@
 <h3>Lives at:</h3>
 <%= @house.address %>
 <% if @parent.children != [] && !!@parent.children %>
+  <ul>
   <% @parent.children.each do |child| %>
-    <ul><%= child.name %> is <%= child.age %> years old and lives here.</ul>
+    <li><%= child.name %> is <%= child.age %> years old and lives here.</li>
   <% end %>
+  </ul>
   <% else %>
     <h3>No Children found for <%= @parent.name %>.</h3>
 <% end %>
