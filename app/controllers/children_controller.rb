@@ -14,7 +14,6 @@ class ChildrenController < ApplicationController
     if is_logged_in?(session)
       @houses = current_user(session).houses
       @parents = current_user_parents
-      binding.pry
       erb :'children/new'
     else
       erb :'error'
