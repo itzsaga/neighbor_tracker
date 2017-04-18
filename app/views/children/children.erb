@@ -1,0 +1,11 @@
+<% if @children != [] && !!@children %>
+  <h1>You've Added The Following Children:<br>
+  <small>Click for more info</small></h1>
+  <% @children.each do |child| %>
+    <div class="list-group">
+    <a href="/children/<%= child.id %>" class="list-group-item"><%= child.name %></a> - <%= child.age %> years old.
+  <% end %>
+  </div>
+  <% else %>
+  <h1>You haven't added any children yet.</h1>
+<% end %>
