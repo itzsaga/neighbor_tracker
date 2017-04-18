@@ -30,6 +30,15 @@ class HousesController < ApplicationController
     end
   end
 
+  get '/houses/:id/edit' do
+    @house = House.find(params[:id])
+    if is_logged_in?(session) && session[:id] == @house.user_id
+      erb :'houses/edit'
+    else
+      erb :'error'
+    end
+  end
+
   get '/houses/:id' do
     @house = House.find(params[:id])
     if is_logged_in?(session) && session[:id] == @house.user_id
@@ -42,7 +51,6 @@ class HousesController < ApplicationController
   end
 
   patch '/houses/:id' do
-    # binding.pry
     if params[:address] == ""
       redirect "/houses/#{params[:id]}/edit"
     else
@@ -50,15 +58,6 @@ class HousesController < ApplicationController
       @house.update(address: params[:address])
     end
     redirect "/houses/#{@house.id}"
-  end
-
-  get '/houses/:id/edit' do
-    @house = House.find(params[:id])
-    if is_logged_in?(session) && session[:id] == @house.id
-      erb :'houses/edit'
-    else
-      erb :'error'
-    end
   end
 
   delete '/houses/:id/delete' do
