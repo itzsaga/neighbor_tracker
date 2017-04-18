@@ -1,5 +1,4 @@
-<h1>This is the household at:<h1>
-<%= @house.address %><br>
+<h1>This is the household at: <%= @house.address %></h1>
 <a href="/houses/<%= @house.id %>/edit"><button class="btn btn-info">Edit Address</button></a>
 <form action="/houses/<%= @house.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
@@ -7,21 +6,21 @@
 </form>
 <br/>
 <% if @house.parents != [] && !!@house.parents %>
-  <ul>
+  <ul><h2>
   <% @house.parents.each do |parent| %>
     <li><%= parent.name %> is a parent here.</li>
   <% end %>
-</ul>
+</ul></h2>
   <% else %>
-    <h3>No Parents found for <%= @house.address %>.</h3>
+    <h2>No Parents found for <%= @house.address %>.</h2>
 <% end %>
 <br/>
 <% if @house.children != [] && !!@house.children %>
-  <ul>
+  <ul><h3>
   <% @house.children.each do |child| %>
     <li><%= child.name %> is <%= child.age %> years old and lives here.</li>
   <% end %>
-  </ul>
+</ul></h3>
   <% else %>
     <h3>No Children found for <%= @house.address %>.</h3>
 <% end %>
