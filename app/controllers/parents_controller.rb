@@ -67,4 +67,14 @@ class ParentsController < ApplicationController
     end
   end
 
+  delete '/parents/:id/delete' do
+    @parent = Parent.find(params[:id])
+    if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+      @parent.delete
+      redirect to '/parents'
+    else
+      erb :error
+    end
+  end
+
 end
