@@ -1,6 +1,12 @@
 <h1>This is the household at:<h1>
 <address>
   <%= @house.address %> - <a href="/houses/<%= @house.id %>/edit">Edit</a>
+  <form action="/houses/<%= @house.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="text" name="title">
+    <input type="text" name="content">
+    <input type="submit" value="Delete House">
+  </form>
 </address>
 <% if @house.parents != [] && !!@house.parents %>
   <% @house.parents.each do |parent| %>

@@ -67,7 +67,7 @@ class HousesController < ApplicationController
       @house.delete
       redirect to '/houses'
     else
-      redirect 'login'
+      erb :error
     end
   end
 
