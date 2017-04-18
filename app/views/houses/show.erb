@@ -1,12 +1,10 @@
 <h1>This is the household at:<h1>
-<address>
-  <form action="/houses/<%= @house.id %>/delete" method="post" class="form-inline">
-    <%= @house.address %>
-    <a href="/houses/<%= @house.id %>/edit"><button class="btn btn-info">Edit Address</button></a>
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn btn-danger">Delete House</button>
-  </form>
-</address>
+<%= @house.address %> 
+<a href="/houses/<%= @house.id %>/edit"><button class="btn btn-info">Edit Address</button></a>
+<form action="/houses/<%= @house.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn btn-danger">Delete House</button>
+</form>
 <% if @house.parents != [] && !!@house.parents %>
   <% @house.parents.each do |parent| %>
     <ul><%= parent.name %> lives here.</ul>
