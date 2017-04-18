@@ -23,4 +23,17 @@ class ParentsController < ApplicationController
     end
   end
 
+  post '/parents' do
+    if is_logged_in?(session)
+      parent = Parent.new(params)
+      if parent.save
+        redirect 'parents'
+      else
+        redirect 'parents/new'
+      end
+    else
+      erb :'error'
+    end
+  end
+
 end

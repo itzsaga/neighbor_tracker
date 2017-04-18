@@ -4,9 +4,9 @@
     <label for="name">Name:</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Name" required></p>
   </div>
+  <label>Which house does this parent live in?</label>
   <div class="form-group">
-    <label>Which house does this parent live in?</label>
-    <select class="form-control" id="house_id">
+    <select class="form-control" name="house_id">
       <% @houses.each do |house| %>
         <option value="<%= house.id %>"><%= house.address %></option>
       <% end %>
