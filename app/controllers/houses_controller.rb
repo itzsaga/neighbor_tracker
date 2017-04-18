@@ -62,7 +62,7 @@ class HousesController < ApplicationController
 
   delete '/houses/:id/delete' do
     @house = House.find(params[:id])
-    if is_logged_in?(session) && session[:id] == @house.id
+    if is_logged_in?(session) && session[:id] == @house.user_id
       @house.delete
       redirect to '/houses'
     else
