@@ -1,0 +1,21 @@
+<h1>Update <%= @parent.name %>'s Info:</h1>
+<form action="/parents/<%= @parent.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<%= @parent.name %>" required></p>
+  </div>
+  <label>Which house does <%= @parent.name %> live in?</label>
+  <div class="form-group">
+    <select class="form-control" name="house_id">
+      <% @houses.each do |house| %>
+        <% if house.id == @parent.house_id %>
+          <option value="<%= house.id %>" selected><%= house.address %></option>
+        <% else %>
+          <option value="<%= house.id %>"><%= house.address %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default btn-lg">Update Parent</button>
+</form>

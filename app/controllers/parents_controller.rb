@@ -39,16 +39,27 @@ class ParentsController < ApplicationController
   get '/parents/:id/edit' do
     @parent = Parent.find(params[:id])
     if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+      @houses = current_user(session).houses
       erb :'parents/edit'
     else
       erb :'error'
     end
   end
 
+  patch '/parents/:id' do
+    if params[:name] == ""
+      redirect "/parents/#{params[:id]}/edit"
+    else
+      @parent = Parent.find(params[:id])
+      @parent.update(name: params[:name], house_id: params[:house_id])
+    end
+    redirect "/parents/#{@parent.id}"
+  end
+
   get '/parents/:id' do
     @parent = Parent.find(params[:id])
-    @house = House.find(@parent.house_id)
     if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+      @house = House.find(@parent.house_id)
       @children = @parent.children
       erb :'parents/show'
     else
