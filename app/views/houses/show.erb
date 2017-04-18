@@ -1,6 +1,6 @@
 <h1>This is the household at:<h1>
 <address>
-  <%= @house.address %>
+  <%= @house.address %> - <a href="/houses/<%= @house.id %>/edit">Edit</a>
 </address>
 <% if @house.parents != [] && !!@house.parents %>
   <% @house.parents.each do |parent| %>
