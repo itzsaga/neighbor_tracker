@@ -14,4 +14,13 @@ class ParentsController < ApplicationController
     end
   end
 
+  get '/parents/new' do
+    if is_logged_in?(session)
+      @houses = current_user(session).houses
+      erb :'parents/new'
+    else
+      erb :'error'
+    end
+  end
+
 end

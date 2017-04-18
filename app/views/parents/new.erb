@@ -1,0 +1,16 @@
+<h1>Add A Parent:</h1>
+<form action="/parents" method="post">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required></p>
+  </div>
+  <div class="form-group">
+    <label>Which house does this parent live in?</label>
+    <select class="form-control" id="house_id">
+      <% @houses.each do |house| %>
+        <option value="<%= house.id %>"><%= house.address %></option>
+      <% end %>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default btn-lg">Add Parent</button>
+</form>
