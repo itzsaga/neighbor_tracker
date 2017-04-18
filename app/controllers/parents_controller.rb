@@ -36,4 +36,14 @@ class ParentsController < ApplicationController
     end
   end
 
+  get '/parents/:id' do
+    @parent = Parent.find(params[:id])
+    if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+      @children = @parent.children
+      erb :'parents/show'
+    else
+      erb :'error'
+    end
+  end
+
 end
