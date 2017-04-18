@@ -3,7 +3,7 @@
   <small>Click for more info</small></h1>
   <% @children.each do |child| %>
     <div class="list-group">
-    <a href="/children/<%= child.id %>" class="list-group-item"><%= child.name %></a> - <%= child.age %> years old.
+    <a href="/children/<%= child.id %>" class="list-group-item"><%= child.name %> - <%= child.age %> years old.</a>
   <% end %>
   </div>
   <% else %>
