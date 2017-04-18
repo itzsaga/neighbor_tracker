@@ -1,0 +1,16 @@
+<h1>This is the info for:<h1>
+<%= @parent.name %><br>
+<a href="/parents/<%= @parent.id %>/edit"><button class="btn btn-info">Edit Name</button></a>
+<form action="/parents/<%= @parent.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn btn-danger">Delete <%= @parent.name %></button>
+</form>
+<h3>Lives at:</h3>
+<%= @house.address %>
+<% if @parent.children != [] && !!@parent.children %>
+  <% @parent.children.each do |child| %>
+    <ul><%= child.name %> is <%= child.age %> years old and lives here.</ul>
+  <% end %>
+  <% else %>
+    <h3>No Children found for <%= @parent.name %>.</h3>
+<% end %>
