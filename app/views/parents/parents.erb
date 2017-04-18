@@ -1,0 +1,11 @@
+<% if @parents != [] && !!@parents %>
+  <h1>You've Added The Following Parents:<br>
+  <small>Click for more info</small></h1>
+  <% @parents.each do |parent| %>
+    <div class="list-group">
+    <a href="/parents/<%= parent.id %>" class="list-group-item"><%= parent.name %></a>
+  <% end %>
+  </div>
+  <% else %>
+  <h1>You haven't added any parents yet.</h1>
+<% end %>
