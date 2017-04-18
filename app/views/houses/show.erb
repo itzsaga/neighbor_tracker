@@ -8,7 +8,7 @@
 <% if @house.parents != [] && !!@house.parents %>
   <ul><h2>
   <% @house.parents.each do |parent| %>
-    <li><%= parent.name %> is a parent here.</li>
+    <li><a href="/parents/<%= parent.id %>"><%= parent.name %></a> is a parent here.</li>
   <% end %>
 </ul></h2>
   <% else %>
@@ -18,7 +18,7 @@
 <% if @house.children != [] && !!@house.children %>
   <ul><h3>
   <% @house.children.each do |child| %>
-    <li><%= child.name %> is <%= child.age %> years old and lives here.</li>
+    <li><a href="/childs/<%= child.id %>"><%= child.name %></a> is <%= child.age %> years old and lives here.</li>
   <% end %>
 </ul></h3>
   <% else %>
