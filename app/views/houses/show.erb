@@ -1,11 +1,10 @@
 <h1>This is the household at:<h1>
 <address>
-  <%= @house.address %> - <a href="/houses/<%= @house.id %>/edit">Edit</a>
-  <form action="/houses/<%= @house.id %>/delete" method="post">
+  <form action="/houses/<%= @house.id %>/delete" method="post" class="form-inline">
+    <%= @house.address %>
+    <a href="/houses/<%= @house.id %>/edit"><button class="btn btn-info">Edit Address</button></a>
     <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="text" name="title">
-    <input type="text" name="content">
-    <input type="submit" value="Delete House">
+    <button type="submit" class="btn btn-danger">Delete House</button>
   </form>
 </address>
 <% if @house.parents != [] && !!@house.parents %>
