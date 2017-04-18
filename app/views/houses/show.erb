@@ -5,17 +5,23 @@
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit" class="btn btn-danger">Delete <%= @house.address %></button>
 </form>
+<br/>
 <% if @house.parents != [] && !!@house.parents %>
+  <ul>
   <% @house.parents.each do |parent| %>
-    <ul><%= parent.name %> lives here.</ul>
+    <li><%= parent.name %> is a parent here.</li>
   <% end %>
+</ul>
   <% else %>
     <h3>No Parents found for <%= @house.address %>.</h3>
 <% end %>
+<br/>
 <% if @house.children != [] && !!@house.children %>
+  <ul>
   <% @house.children.each do |child| %>
-    <ul><%= child.name %> is <%= child.age %> years old and lives here.</ul>
+    <li><%= child.name %> is <%= child.age %> years old and lives here.</li>
   <% end %>
+  </ul>
   <% else %>
     <h3>No Children found for <%= @house.address %>.</h3>
 <% end %>
