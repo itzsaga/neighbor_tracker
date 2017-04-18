@@ -35,3 +35,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+## Environment normalization:
+######################
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
