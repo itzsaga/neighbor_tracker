@@ -16,6 +16,16 @@ class ApplicationController < Sinatra::Base
     def is_logged_in?(session)
       !!session[:id] ? true : false
     end
+
+    def current_user_parents
+      parents = []
+      current_user(session).houses.each do |house|
+        Parent.where(house_id: house.id).each do |parent|
+          parents << parent
+        end
+      end
+      parents
+    end
   end
 
   get '/' do
