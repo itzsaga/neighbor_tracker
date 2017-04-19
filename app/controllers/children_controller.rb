@@ -2,8 +2,7 @@ class ChildrenController < ApplicationController
 
   get '/children' do
     if is_logged_in?(session)
-      @parents = current_user_parents
-      @children = @parents.collect {|parent| parent.children}.flatten
+      @children = current_user_parents.collect {|parent| parent.children}.flatten.uniq
       erb :'children/children'
     else
       erb :'error'
@@ -22,7 +21,6 @@ class ChildrenController < ApplicationController
 
   post '/children' do
     if is_logged_in?(session)
-      binding.pry
       child = Child.new(params)
       if child.save
         redirect 'children'
@@ -31,6 +29,28 @@ class ChildrenController < ApplicationController
       end
     else
       erb :'error'
+    end
+  end
+
+  get '/children/:id' do
+    @child = Child.find(params[:id])
+    @house = House.find(@child.parents.first.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
+      @parents = @child.parents
+      erb :'children/show'
+    else
+      erb :'error'
+    end
+  end
+
+  delete '/children/:id/delete' do
+    @child = Child.find(params[:id])
+    @house = House.find(@child.parents.first.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
+      @child.delete
+      redirect to '/children'
+    else
+      erb :error
     end
   end
 end
