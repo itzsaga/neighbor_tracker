@@ -32,6 +32,28 @@ class ChildrenController < ApplicationController
     end
   end
 
+  get '/children/:id/edit' do
+    @child = Child.find(params[:id])
+    @house = House.find(@child.parents.first.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
+      @parents = current_user_parents
+      erb :'children/edit'
+    else
+      erb :'error'
+    end
+  end
+
+  patch '/children/:id' do
+    binding.pry
+    if params[:name] == ""
+      redirect "/children/#{params[:id]}/edit"
+    else
+      @child = Child.find(params[:id])
+      @child.update(name: params[:name], age: params[:age], parent_ids: params[:parent_ids])
+    end
+    redirect "/children/#{@child.id}"
+  end
+
   get '/children/:id' do
     @child = Child.find(params[:id])
     @house = House.find(@child.parents.first.house_id)

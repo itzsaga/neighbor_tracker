@@ -1,0 +1,29 @@
+<h1>Update <%= @child.name %>'s Info:</h1>
+<form action="/children/<%= @child.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="<%= @child.name %>" required></p>
+  </div>
+  <div class="form-group">
+    <label for="name">Age:</label>
+    <select class="form-control" name="age">
+      <% (0..26).each do |x| %>
+        <% if x == @child.age %>
+          <option value=<%= x %> selected><%= x %></option>
+        <% else %>
+          <option value=<%= x %>><%= x %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+  <label>Who are this child's parents?</label>
+  <div class="checkbox">
+    <% @parents.each do |parent| %>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="parent_ids[]" value="<%= parent.id %>" <%='checked' if @child.parents.include?(parent)%>><%= parent.name %></input>
+      <label class="checkbox-inline">
+    <% end %>
+  </div>
+  <button type="submit" class="btn btn-default btn-lg">Add Child</button>
+</form>
