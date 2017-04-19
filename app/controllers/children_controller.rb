@@ -44,7 +44,6 @@ class ChildrenController < ApplicationController
   end
 
   patch '/children/:id' do
-    binding.pry
     if params[:name] == ""
       redirect "/children/#{params[:id]}/edit"
     else

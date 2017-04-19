@@ -15,9 +15,9 @@
     <h2>No Parents found for <%= @house.address %>.</h2>
 <% end %>
 <br/>
-<% if @house.children != [] && !!@house.children %>
+<% if @children != [] && !!@children %>
   <ul><h3>
-  <% @house.children.each do |child| %>
+  <% @children.each do |child| %>
     <li><a href="/childs/<%= child.id %>"><%= child.name %></a> is <%= child.age %> years old and lives here.</li>
   <% end %>
 </ul></h3>
