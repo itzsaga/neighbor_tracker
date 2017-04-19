@@ -3,7 +3,7 @@
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="<%= @child.name %>" required></p>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value ="<%= @child.name %>" required></p>
   </div>
   <div class="form-group">
     <label for="name">Age:</label>
@@ -25,5 +25,5 @@
       <label class="checkbox-inline">
     <% end %>
   </div>
-  <button type="submit" class="btn btn-default btn-lg">Add Child</button>
+  <button type="submit" class="btn btn-default btn-lg">Update Info</button>
 </form>
