@@ -33,7 +33,8 @@ class ParentsController < ApplicationController
 
   get '/parents/:id/edit' do
     @parent = Parent.find(params[:id])
-    if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+    @house = House.find(@parent.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
       @houses = current_user(session).houses
       erb :'parents/edit'
     else
@@ -53,8 +54,8 @@ class ParentsController < ApplicationController
 
   get '/parents/:id' do
     @parent = Parent.find(params[:id])
-    if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
-      @house = House.find(@parent.house_id)
+    @house = House.find(@parent.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
       @children = @parent.children
       erb :'parents/show'
     else
@@ -64,7 +65,8 @@ class ParentsController < ApplicationController
 
   delete '/parents/:id/delete' do
     @parent = Parent.find(params[:id])
-    if is_logged_in?(session) && session[:id] == House.find(@parent.house_id).user_id
+    @house = House.find(@parent.house_id)
+    if is_logged_in?(session) && session[:id] == @house.user_id
       @parent.delete
       redirect to '/parents'
     else
