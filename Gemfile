@@ -7,7 +7,7 @@ gem 'pg'
 gem 'sqlite3', :group => :development
 gem 'sinatra'
 gem 'thin'
-gem 'shotgun'
+gem 'shotgun', :group => :development
 gem 'tux', :group => :development
 gem 'pry', :group => :development
 gem 'rake'
