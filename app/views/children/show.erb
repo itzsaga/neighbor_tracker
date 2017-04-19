@@ -1,6 +1,6 @@
 <h1>This is the info for: <%= @child.name %></h1>
 <h2>Age: <%= @child.age %></h2>
-<a href="/childs/<%= @child.id %>/edit"><button class="btn btn-info">Edit <%= @child.name %>'s Info</button></a>
+<a href="/children/<%= @child.id %>/edit"><button class="btn btn-info">Edit <%= @child.name %>'s Info</button></a>
 <form action="/children/<%= @child.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <button type="submit" class="btn btn-danger">Delete <%= @child.name %></button>
