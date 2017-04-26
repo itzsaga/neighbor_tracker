@@ -80,14 +80,6 @@ class ParentsController < ApplicationController
 
   private
 
-  def logged_in_auth
-    is_logged_in?(session) && session[:id] == @house.user_id
-  end
-
-  def logged_in_not_auth
-    is_logged_in?(session) && session[:id] != @house.user_id
-  end
-
   def set_house
     @house = House.find(@parent.house_id)
   end
