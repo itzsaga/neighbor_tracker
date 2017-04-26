@@ -26,6 +26,14 @@ class ApplicationController < Sinatra::Base
       end
       parents
     end
+
+    def logged_in_auth
+      is_logged_in?(session) && session[:id] == @house.user_id
+    end
+
+    def logged_in_not_auth
+      is_logged_in?(session) && session[:id] != @house.user_id
+    end
   end
 
   get '/' do
