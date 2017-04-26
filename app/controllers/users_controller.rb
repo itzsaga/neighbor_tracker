@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect 'houses'
     else
-      redirect 'signup'
+      erb :'users/create_user'
     end
   end
 

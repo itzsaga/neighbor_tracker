@@ -32,11 +32,13 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id/edit' do
-    @parent = Parent.find(params[:id])
-    @house = House.find(@parent.house_id)
+    set_parent
+    set_house
     if is_logged_in?(session) && session[:id] == @house.user_id
       @houses = current_user(session).houses
       erb :'parents/edit'
+    elsif is_logged_in?(session) && session[:id] != @house.user_id
+      erb :'not_auth'
     else
       erb :'error'
     end
@@ -53,25 +55,45 @@ class ParentsController < ApplicationController
   end
 
   get '/parents/:id' do
-    @parent = Parent.find(params[:id])
-    @house = House.find(@parent.house_id)
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_parent
+    set_house
+    if logged_in_auth
       @children = @parent.children
       erb :'parents/show'
+    elsif logged_in_not_auth
+      erb :'not_auth'
     else
       erb :'error'
     end
   end
 
   delete '/parents/:id/delete' do
-    @parent = Parent.find(params[:id])
-    @house = House.find(@parent.house_id)
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_parent
+    set_house
+    if logged_in_auth
       @parent.delete
       redirect to '/parents'
     else
       erb :error
     end
+  end
+
+  private
+
+  def logged_in_auth
+    is_logged_in?(session) && session[:id] == @house.user_id
+  end
+
+  def logged_in_not_auth
+    is_logged_in?(session) && session[:id] != @house.user_id
+  end
+
+  def set_house
+    @house = House.find(@parent.house_id)
+  end
+
+  def set_parent
+    @parent = Parent.find(params[:id])
   end
 
 end
