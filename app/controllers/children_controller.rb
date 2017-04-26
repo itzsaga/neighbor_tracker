@@ -33,11 +33,13 @@ class ChildrenController < ApplicationController
   end
 
   get '/children/:id/edit' do
-    @child = Child.find(params[:id])
-    @house = House.find(@child.parents.first.house_id)
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_child
+    set_house
+    if logged_in_auth
       @parents = current_user_parents
       erb :'children/edit'
+    elsif logged_in_not_auth
+      erb :'not_auth'
     else
       erb :'error'
     end
@@ -47,31 +49,43 @@ class ChildrenController < ApplicationController
     if params[:name] == ""
       redirect "/children/#{params[:id]}/edit"
     else
-      @child = Child.find(params[:id])
+      set_child
       @child.update(name: params[:name], age: params[:age], parent_ids: params[:parent_ids])
     end
     redirect "/children/#{@child.id}"
   end
 
   get '/children/:id' do
-    @child = Child.find(params[:id])
-    @house = House.find(@child.parents.first.house_id)
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_child
+    set_house
+    if logged_in_auth
       @parents = @child.parents
       erb :'children/show'
+    elsif logged_in_not_auth
+      erb :'not_auth'
     else
       erb :'error'
     end
   end
 
   delete '/children/:id/delete' do
-    @child = Child.find(params[:id])
-    @house = House.find(@child.parents.first.house_id)
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_child
+    set_house
+    if logged_in_auth
       @child.delete
       redirect to '/children'
     else
       erb :error
     end
+  end
+
+  private
+
+  def set_house
+    @house = House.find(@child.parents.first.house_id)
+  end
+
+  def set_child
+    @child = Child.find(params[:id])
   end
 end
