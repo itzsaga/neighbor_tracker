@@ -34,10 +34,10 @@ class ParentsController < ApplicationController
   get '/parents/:id/edit' do
     set_parent
     set_house
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    if logged_in_auth
       @houses = current_user(session).houses
       erb :'parents/edit'
-    elsif is_logged_in?(session) && session[:id] != @house.user_id
+    elsif logged_in_not_auth
       erb :'not_auth'
     else
       erb :'error'
@@ -48,7 +48,7 @@ class ParentsController < ApplicationController
     if params[:name] == ""
       redirect "/parents/#{params[:id]}/edit"
     else
-      @parent = Parent.find(params[:id])
+      set_parent
       @parent.update(name: params[:name], house_id: params[:house_id])
     end
     redirect "/parents/#{@parent.id}"
