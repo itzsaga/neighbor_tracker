@@ -31,20 +31,24 @@ class HousesController < ApplicationController
   end
 
   get '/houses/:id/edit' do
-    @house = House.find(params[:id])
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_house
+    if logged_in_auth
       erb :'houses/edit'
+    elsif logged_in_not_auth
+      erb :'not_auth'
     else
       erb :'error'
     end
   end
 
   get '/houses/:id' do
-    @house = House.find(params[:id])
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_house
+    if logged_in_auth
       @parents = @house.parents
       @children = @house.children.uniq
       erb :'houses/show'
+    elsif logged_in_not_auth
+      erb :'not_auth'
     else
       erb :'error'
     end
@@ -54,20 +58,26 @@ class HousesController < ApplicationController
     if params[:address] == ""
       redirect "/houses/#{params[:id]}/edit"
     else
-      @house = House.find(params[:id])
+      set_house
       @house.update(address: params[:address])
     end
     redirect "/houses/#{@house.id}"
   end
 
   delete '/houses/:id/delete' do
-    @house = House.find(params[:id])
-    if is_logged_in?(session) && session[:id] == @house.user_id
+    set_house
+    if logged_in_auth
       @house.delete
       redirect to '/houses'
     else
       erb :error
     end
+  end
+
+  private
+
+  def set_house
+    @house = House.find(params[:id])
   end
 
 end
