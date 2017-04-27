@@ -1,4 +1,9 @@
 <h1>Please Login:</h1>
+<p>
+  <% if !!@user %>
+    <h3 style="color:red">Incorrect username or password.</h3>
+  <% end %>
+</p>
 <form action="/login" method="post">
   <div class="form-group">
     <label for="username">Username:</label>
