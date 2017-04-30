@@ -1,4 +1,4 @@
-# New Neighbor Database
+# Your Neighbors
 
 This new neighbor database is a Sinatra app that will allow you to keep track of who your neighbors are. This will come in handy especially when moving to a new neighborhood as the developer had when writing this app.
 
